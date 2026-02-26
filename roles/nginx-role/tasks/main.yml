@@ -1,0 +1,16 @@
+---
+- name: Install nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Create secret file using vault variable
+  copy:
+    content: "{{ secret_message }}"
+    dest: /home/ansible/secret.txt
+    mode: '0600'
+
+- name: Show secret variable
+  debug:
+    var: secret_message
